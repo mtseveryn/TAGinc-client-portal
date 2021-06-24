@@ -9,7 +9,7 @@
     "build2": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
     "build3": "cross-env NODE_ENV=production webpack",
     "dev": "webpack serve --hot --open",
-    "dev2": "concurrently \"cross-env NODE_ENV=development webpack serve  --hot --open \" \"nodemon ./server/server.js\"",
+    "dev2": "concurrently \"cross-env NODE_ENV=development webpack serve --open --hot --inline  ./\" \"nodemon ./server/server.js\"",
     "start": "concurrently \" webpack serve --hot --open\" \"nodemon server/server.js\" "
   },
   "repository": {
