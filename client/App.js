@@ -2,8 +2,8 @@ import React from 'react'
 
 const App = () => {
   return (
-    <div>
-      Hello, there..
+    <div style={{color: 'red'}}>
+      Hello, There..
     </div>
   )
 }
