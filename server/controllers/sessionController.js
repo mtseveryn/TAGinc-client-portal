@@ -1,1 +1,1 @@
-const Session = require('../models/sessionModel');
+const Session = require('../models/authenSessionModel');
