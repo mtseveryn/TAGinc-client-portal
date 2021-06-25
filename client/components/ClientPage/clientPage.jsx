@@ -6,6 +6,7 @@ import {
 	Paper,
 	Container,
 	Grid,
+	Box,
 } from '@material-ui/core';
 import useStyles from './styles';
 
@@ -14,17 +15,31 @@ const GET_PATH = '/api/data';
 
 const ClientPage = () => {
 	// todo: declare states
-	const initialState = {
+	const postInitialState = {
 		message: '',
 	};
+	
+	const dataInitialState = [
+		{
+			msgId: 1,
+			message:'Message 1',
+		}, 
+		{message:'Message 2'}, 
+		{message:'Message 3'}
+	];
 
-	const [allData, setAllData] = useState(['1', '2', '3']);
-	const [postData, setPostData] = useState(initialState);
+	const [allData, setAllData] = useState(dataInitialState);
+	const [postData, setPostData] = useState(postInitialState);
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
 	const getData = () => {
+<<<<<<< HEAD
 		
+=======
+		console.log('render')
+		return;
+>>>>>>> dev
 		try {
 			// ! check backend routes and then update route here
 			const response = axios.get(`http://localhost:3000/${GET_PATH}`);
@@ -43,19 +58,27 @@ const ClientPage = () => {
 			console.log('saveData() from clientPage error: ', error);
 		}
 	};
+	
 	// handleSubmit
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		saveData();
 	};
+	// Clear form
+	const clear = () => {
+		setPostData(postInitialState);
+	}
+
 	//page should re-rendering when data changes
 	useEffect(() => {
 		getData();
 	}, []);
 
+	const change = false;
+
 	return (
 		<>
-			<Container maxWidth='xl'>
+			<Container className={classes.container} maxWidth='xl'>
 				<Paper className={classes.paper}>
 					<form onSubmit={handleSubmit}>
 						<Typography variant='h4'>Submit a help request</Typography>
@@ -65,30 +88,59 @@ const ClientPage = () => {
 							variant='outlined'
 							label='Message'
 							fullWidth
+							multiline rows={2}
 							value={postData.message}
 							onChange={(e) =>
 								setPostData({ ...postData, message: e.target.value })
 							}
 						/>
-						<Button
-							type='submit'
-							variant='contained'
-							size='large'
-							fullwidth='true'
-						>
-							Submit
-						</Button>
+						<Grid container>
+							<Grid item xs={10}>
+								<Button
+									type='submit'
+									variant='text'
+									size='large'
+									fullWidth
+									color='primary'
+								>
+									Submit
+								</Button>
+							</Grid>
+							<Grid item xs={2}>
+								<Button
+									onClick={clear}
+									variant='contained'
+									size='large'
+									fullWidth
+									color="secondary"
+								>
+									Clear
+								</Button>
+							</Grid>
+						</Grid>
 					</form>
 				</Paper>
 			</Container>
-			<Container>
-				<Grid container direction='row' spacing={2} fullwidth='true'>
-					{allData.map((el, index) => (
-						<Grid key={index} item>
-							<Paper className={classes.paper}>{el}</Paper>
-						</Grid>
-					))}
-				</Grid>
+			<Container 
+				className={classes.container} 
+				maxWidth='lg'
+			>
+			{allData.map((el, index) => (
+					<Box 
+						border= {1}
+						borderColor = "lightgrey"
+						key={index}
+					>
+						<Typography 
+							variant='h6' 
+							className={classes.paper}
+						>
+							{el.message}
+						</Typography>
+					</Box>
+				))
+			}
+			
 			</Container>
 		</>
 	);
