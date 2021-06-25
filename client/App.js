@@ -1,15 +1,11 @@
-import React from 'react';
-import './assets/styles.css';
-import ClientPage from './components/ClientPage/clientPage';
-import Header from './components/Header/Header';
+import React from 'react'
 
 const App = () => {
-	return (
-		<>
-			<Header/>
-			<ClientPage />
-		</>
-	);
-};
+  return (
+    <div style={{color: 'red'}}>
+      Hello, There..
+    </div>
+  )
+}
 
-export default App;
+export default App
