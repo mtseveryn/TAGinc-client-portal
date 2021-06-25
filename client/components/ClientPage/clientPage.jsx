@@ -33,7 +33,7 @@ const ClientPage = () => {
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
-	const getData = () => {
+	const getData = ()=>  {
 		console.log('render')
 		return;
 		try {
