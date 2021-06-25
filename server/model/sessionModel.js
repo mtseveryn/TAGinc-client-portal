@@ -7,10 +7,10 @@ const pool = new Pool({
     connectionString: connString
 })
 
-pool.query("SELECT NOW()", (err, res) => {
-  console.log('CONNECTED TO DATABASE!!!', err, res);
-  pool.end();
-});
+// pool.query("SELECT NOW()", (err, res) => {
+//   console.log('CONNECTED TO DATABASE!!!', err, res);
+//   pool.end();
+// });
 
 module.exports = {
     query: (text, params, callback) => {
