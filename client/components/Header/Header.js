@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -8,13 +8,19 @@ import {
   Avatar,
   Dialog,
 } from "@material-ui/core";
+import Auth from '../Auth/Auth'
 import useStyles from "./styles";
 
 const Header = () => {
+  const [openAuth, setOpenAuth] = useState(false);
   
   const classes = useStyles();
 
   const logout = ()=>{}
+
+  const user = false;
+
+  const toggleAuth = ()=> setOpenAuth(prev => !prev)
 
   return (
     <AppBar className={classes.appBar} position='sticky' color='inherit'>
@@ -30,17 +36,39 @@ const Header = () => {
         </Typography>
         {/* <img src={logo} alt="logo" height="60" /> */}
       </div>
+      
       <Toolbar className={classes.toolbar}>
-      <Button
-              variant="contained"
-              color="secondary"
-              onClick={logout}
-            >
-              Logout
-            </Button>
+      { user ? (
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={logout}
+        >
+          Logout
+        </Button>
+      ):
+      (
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={toggleAuth}
+        >
+          signIn
+        </Button>
+        
+      ) 
+      }
       </Toolbar>
+      <Dialog open={openAuth} onBackdropClick={toggleAuth}>
+        <Auth />
+      </Dialog>
     </AppBar>
   )
 }
 
 export default Header
+
+
+// localStorage.setItem('profile', JSON.stringify({...action?.data}));
+
+// const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));

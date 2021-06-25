@@ -34,8 +34,14 @@ const ClientPage = () => {
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
+<<<<<<< HEAD
+	const getData = ()=>  {
+		console.log('render')
+		return;
+=======
 	const getData = async () => {
 		
+>>>>>>> dev
 		try {
 			// ! check backend routes and then update route here
 			const response = await axios.get(`http://localhost:3000/${GET_PATH}`);
