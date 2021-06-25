@@ -54,11 +54,17 @@ const ClientPage = () => {
 			console.log('saveData() from clientPage error: ', error);
 		}
 	};
+	
 	// handleSubmit
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		saveData();
 	};
+	// Clear form
+	const clear = () => {
+		setPostData(postInitialState);
+	}
+
 	//page should re-rendering when data changes
 	useEffect(() => {
 		getData();
@@ -84,14 +90,30 @@ const ClientPage = () => {
 								setPostData({ ...postData, message: e.target.value })
 							}
 						/>
-						<Button
-							type='submit'
-							variant='contained'
-							size='large'
-							fullWidth
-						>
-							Submit
-						</Button>
+						<Grid container>
+							<Grid item xs={10}>
+								<Button
+									type='submit'
+									variant='contained'
+									size='large'
+									fullWidth
+									color='primary'
+								>
+									Submit
+								</Button>
+							</Grid>
+							<Grid item xs={2}>
+								<Button
+									onClick={clear}
+									variant='contained'
+									size='large'
+									fullWidth
+									color="secondary"
+								>
+									Clear
+								</Button>
+							</Grid>
+						</Grid>
 					</form>
 				</Paper>
 			</Container>
