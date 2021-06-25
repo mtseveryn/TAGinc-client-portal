@@ -6,9 +6,6 @@ const app = express();
 const PORT = 3000;
 
 //app.use(express.static(path.resolve(__dirname, '../index.html')));
-app.use('/', (req, res) => {
-	return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-});
 
 //handle parsing request body
 app.use(express.json());
@@ -16,14 +13,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname, '../build/')))
 
+app.get('/', (req, res) => {
+	return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+});
+
+
 //define route handlers
 
 
 
 // To add Handle- Path to 404
-app.use('*', (req, res) =>
-	res.status(404).send("This is not the page you're looking for...")
-);
+app.use('*',(req, res) =>{
+	return res.status(404).send("This is not the page you're looking for..")
+});
 
 // To add Global error handler- Catch all errors
 app.use((err, req, res, next) => {

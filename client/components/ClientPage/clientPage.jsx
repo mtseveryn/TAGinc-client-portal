@@ -6,6 +6,7 @@ import {
 	Paper,
 	Container,
 	Grid,
+	Box,
 } from '@material-ui/core';
 import useStyles from './styles';
 
@@ -63,6 +64,8 @@ const ClientPage = () => {
 		getData();
 	}, []);
 
+	const change = false;
+
 	return (
 		<>
 			<Container className={classes.container} maxWidth='lg'>
@@ -97,8 +100,9 @@ const ClientPage = () => {
 				maxWidth='lg'
 			>
 			{allData.map((el, index) => (
-					<Paper 
-						className={classes.paper} 
+					<Box 
+						border= {1}
+						borderColor = "lightgrey"
 						key={index}
 					>
 						<Typography 
@@ -107,9 +111,10 @@ const ClientPage = () => {
 						>
 							{el.message}
 						</Typography>
-					</Paper>
+					</Box>
 				))
 			}
+			
 			</Container>
 		</>
 	);

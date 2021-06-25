@@ -5,7 +5,8 @@ export default makeStyles((theme) => ({
 	paper: {
 		padding: theme.spacing(2),
 	},
-	container: {
-		
+	box: {
+		border: 1,
+		borderColor: 'black'
 	},
 }));
