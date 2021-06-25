@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
 	TextField,
 	Button,
@@ -33,17 +34,13 @@ const ClientPage = () => {
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
-	const getData = () => {
-<<<<<<< HEAD
+	const getData = async () => {
 		
-=======
-		console.log('render')
-		return;
->>>>>>> dev
 		try {
 			// ! check backend routes and then update route here
-			const response = axios.get(`http://localhost:3000/${GET_PATH}`);
-			setAllData(response);
+			const response = await axios.get(`http://localhost:3000/${GET_PATH}`);
+			// setAllData(response);
+			console.log('response: ', response);
 		} catch (error) {
 			console.error('err in getData', error);
 		}

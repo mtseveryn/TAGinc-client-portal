@@ -15,7 +15,7 @@ landingController.getData = async (req, res, next) => {
 
 landingController.getMessage = (req, res, next) => {
 let msgData = {
-    message: "This is a test form getMessage."
+    message: "This is a test foom getMessage."
 }
 res.status(200).json(msgData);
 return next();
