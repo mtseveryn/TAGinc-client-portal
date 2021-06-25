@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../build/')))
 
 //define route handlers
-
+app.use('/api', apiRouter);
 
 
 // To add Handle- Path to 404
