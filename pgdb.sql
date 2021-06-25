@@ -1,0 +1,5 @@
+CREATE TABLE Tickets (
+    "id" SERIAL NOT NULL
+) WITH (
+    OIDS = FALSE
+)
