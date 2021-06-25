@@ -74,7 +74,7 @@ const ClientPage = () => {
 
 	return (
 		<>
-			<Container className={classes.container} maxWidth='lg'>
+			<Container className={classes.container} maxWidth='xl'>
 				<Paper className={classes.paper}>
 					<form onSubmit={handleSubmit}>
 						<Typography variant='h4'>Submit a help request</Typography>
@@ -94,7 +94,7 @@ const ClientPage = () => {
 							<Grid item xs={10}>
 								<Button
 									type='submit'
-									variant='contained'
+									variant='text'
 									size='large'
 									fullWidth
 									color='primary'
