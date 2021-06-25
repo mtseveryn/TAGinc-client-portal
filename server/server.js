@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 //import routes api
+const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 

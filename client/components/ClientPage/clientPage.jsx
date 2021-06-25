@@ -10,7 +10,7 @@ import {
 import useStyles from './styles';
 
 const POST_PATH = '';
-const GET_PATH = '';
+const GET_PATH = '/api/data';
 
 const ClientPage = () => {
 	// todo: declare states
@@ -24,7 +24,7 @@ const ClientPage = () => {
 
 	//todo: helper function to retrieve all data from backend
 	const getData = () => {
-		return;
+		
 		try {
 			// ! check backend routes and then update route here
 			const response = axios.get(`http://localhost:3000/${GET_PATH}`);
