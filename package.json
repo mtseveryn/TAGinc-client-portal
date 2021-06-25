@@ -5,12 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "server": "nodemon server/server.js",
-    "build": "webpack --config webpack.config.js",
-    "build2": "cross-env NODE_ENV=production webpack --config build/webpack.config.js",
-    "build3": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack serve --hot --open",
-    "dev2": "concurrently \"cross-env NODE_ENV=development webpack serve --hot --open \" \"nodemon ./server/server.js\"",
-    "start": "concurrently \" webpack serve --hot --open\" \"nodemon server/server.js\" "
+    "build": "cross-env NODE_ENV=production webpack",
+    "start": "concurrently \" cross-env NODE_ENV=development webpack serve --hot --open\" \"nodemon server/server.js\""
   },
   "repository": {
     "type": "git",
@@ -24,7 +20,6 @@
   "homepage": "https://github.com/WonderPortal-Dev/TAGinc-client-portal#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "html-webpack-plugin": "^5.3.2",
     "path": "^0.12.7",
     "pg": "^8.6.0",
     "react": "^17.0.2",
@@ -37,7 +32,11 @@
     "babel-loader": "^8.2.2",
     "concurrently": "^6.2.0",
     "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^1.6.0",
     "nodemon": "^2.0.7",
+    "style-loader": "^3.0.0",
     "webpack": "^5.40.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"

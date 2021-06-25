@@ -15,17 +15,14 @@ app.use('/', (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+app.use(express.static(path.resolve(__dirname, '../build/')))
+
 //define route handlers
 
 
 
-
-
-
-
-
 // To add Handle- Path to 404
-app.use((req, res) =>
+app.use('*',(req, res) =>
 	res.status(404).send("This is not the page you're looking for...")
 );
 
