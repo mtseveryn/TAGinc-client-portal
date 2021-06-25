@@ -14,16 +14,26 @@ const GET_PATH = '';
 
 const ClientPage = () => {
 	// todo: declare states
-	const initialState = {
+	const postInitialState = {
 		message: '',
 	};
+	
+	const dataInitialState = [
+		{
+			msgId: 1,
+			message:'Message 1',
+		}, 
+		{message:'Message 2'}, 
+		{message:'Message 3'}
+	];
 
-	const [allData, setAllData] = useState(['1', '2', '3']);
-	const [postData, setPostData] = useState(initialState);
+	const [allData, setAllData] = useState(dataInitialState);
+	const [postData, setPostData] = useState(postInitialState);
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
 	const getData = () => {
+		console.log('render')
 		return;
 		try {
 			// ! check backend routes and then update route here
@@ -55,7 +65,7 @@ const ClientPage = () => {
 
 	return (
 		<>
-			<Container maxWidth='xl'>
+			<Container className={classes.container} maxWidth='lg'>
 				<Paper className={classes.paper}>
 					<form onSubmit={handleSubmit}>
 						<Typography variant='h4'>Submit a help request</Typography>
@@ -65,6 +75,7 @@ const ClientPage = () => {
 							variant='outlined'
 							label='Message'
 							fullWidth
+							multiline rows={2}
 							value={postData.message}
 							onChange={(e) =>
 								setPostData({ ...postData, message: e.target.value })
@@ -74,21 +85,31 @@ const ClientPage = () => {
 							type='submit'
 							variant='contained'
 							size='large'
-							fullwidth='true'
+							fullWidth
 						>
 							Submit
 						</Button>
 					</form>
 				</Paper>
 			</Container>
-			<Container>
-				<Grid container direction='row' spacing={2} fullwidth='true'>
-					{allData.map((el, index) => (
-						<Grid key={index} item>
-							<Paper className={classes.paper}>{el}</Paper>
-						</Grid>
-					))}
-				</Grid>
+			<Container 
+				className={classes.container} 
+				maxWidth='lg'
+			>
+			{allData.map((el, index) => (
+					<Paper 
+						className={classes.paper} 
+						key={index}
+					>
+						<Typography 
+							variant='h6' 
+							className={classes.paper}
+						>
+							{el.message}
+						</Typography>
+					</Paper>
+				))
+			}
 			</Container>
 		</>
 	);
