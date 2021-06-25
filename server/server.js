@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 
 //define route handlers
-
+app.use('/api', apiRouter);
 
 
 // To add Handle- Path to 404
