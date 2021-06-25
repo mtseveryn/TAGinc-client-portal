@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const apiRouter = require('./routes/api.js')
+const cors = require('cors');
 //import routes api
 
 const PORT = 3000;
@@ -11,7 +12,7 @@ const PORT = 3000;
 //handle parsing request body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../build/')))
 
 app.get('/', (req, res) => {
