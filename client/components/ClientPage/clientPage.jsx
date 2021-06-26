@@ -11,8 +11,8 @@ import {
 } from '@material-ui/core';
 import useStyles from './styles';
 
-const POST_PATH = '';
-const GET_PATH = '/api/data';
+const POST_PATH = 'api/message';
+const GET_PATH = 'api/data';
 
 const ClientPage = () => {
 	// todo: declare states
@@ -34,29 +34,23 @@ const ClientPage = () => {
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
-<<<<<<< HEAD
-	const getData = ()=>  {
-		console.log('render')
-		return;
-=======
-	const getData = async () => {
-		
->>>>>>> dev
+
+	const getData = async ()=>  {
 		try {
 			// ! check backend routes and then update route here
-			const response = await axios.get(`http://localhost:3000/${GET_PATH}`);
-			// setAllData(response);
-			console.log('response: ', response);
+			const {data} = await axios.get(`http://localhost:3000/${GET_PATH}`);
+			
+			setAllData([...data]);
+			// console.log('response: ', data);
 		} catch (error) {
 			console.error('err in getData', error);
 		}
 	}; //end of getData
 
 	// todo: helper function to save data to backend
-	const saveData = () => {
-		return;
+	const saveData = async () => {
 		try {
-			axios.post(`http://localhost:3000/${POST_PATH}`, postData);
+			await axios.post(`http://localhost:3000/${POST_PATH}`, postData);
 		} catch (error) {
 			console.log('saveData() from clientPage error: ', error);
 		}
@@ -65,7 +59,12 @@ const ClientPage = () => {
 	// handleSubmit
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		if(postData.message === ''){
+			console.log('Nothing submitted');
+			return;
+		}
 		saveData();
+		setPostData(postInitialState)
 	};
 	// Clear form
 	const clear = () => {
