@@ -5,19 +5,17 @@ const landingController = {};
 landingController.getData = async (req, res, next) => {
     // const myQuery = "SELECT NOW()";
     // const data = await db.query(myQuery);
-    const data = {
+    const data = [{
         message: 'This is a message from landingController\'s getData'
-    };
-    res.status(200).json(data);
-    //console.log('completed query');
+    }];
+    req.body = data;
+    console.log('completed query');
     return next();
 }
 
 landingController.getMessage = (req, res, next) => {
-let msgData = {
-    message: "This is a test foom getMessage."
-}
-res.status(200).json(msgData);
+let msgData = req.body
+console.log('getMessage: ', msgData.message)
 return next();
 }
 module.exports = landingController;

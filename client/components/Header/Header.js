@@ -50,7 +50,7 @@ const Header = () => {
       (
         <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           onClick={toggleAuth}
         >
           signIn
