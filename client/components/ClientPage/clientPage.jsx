@@ -1,148 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-	TextField,
-	Button,
-	Typography,
-	Paper,
-	Container,
-	Grid,
-	Box,
-} from '@material-ui/core';
+import { Typography, Container } from '@material-ui/core';
+import Form from '../Form/Form';
+import Tickets from '../Tickets/Tickets';
 import useStyles from './styles';
 
-const POST_PATH = 'api/message';
-const GET_PATH = 'api/data';
 
 const ClientPage = () => {
-	// todo: declare states
-	const postInitialState = {
-		message: '',
-	};
-	
-	const dataInitialState = [
-		{
-			msgId: 1,
-			message:'Message 1',
-		}, 
-		{message:'Message 2'}, 
-		{message:'Message 3'}
-	];
-
-	const [allData, setAllData] = useState(dataInitialState);
-	const [postData, setPostData] = useState(postInitialState);
 	const classes = useStyles();
-
-	//todo: helper function to retrieve all data from backend
-
-	const getData = async ()=>  {
-		try {
-			// ! check backend routes and then update route here
-			const {data} = await axios.get(`http://localhost:3000/${GET_PATH}`);
-			
-			setAllData([...data]);
-			// console.log('response: ', data);
-		} catch (error) {
-			console.error('err in getData', error);
-		}
-	}; //end of getData
-
-	// todo: helper function to save data to backend
-	const saveData = async () => {
-		try {
-			await axios.post(`http://localhost:3000/${POST_PATH}`, postData);
-		} catch (error) {
-			console.log('saveData() from clientPage error: ', error);
-		}
-	};
-	
-	// handleSubmit
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		if(postData.message === ''){
-			console.log('Nothing submitted');
-			return;
-		}
-		saveData();
-		setPostData(postInitialState)
-	};
-	// Clear form
-	const clear = () => {
-		setPostData(postInitialState);
-	}
-
-	//page should re-rendering when data changes
-	useEffect(() => {
-		getData();
-	}, []);
-
-	const change = false;
 
 	return (
 		<>
 			<Container className={classes.container} maxWidth='xl'>
-				<Paper className={classes.paper}>
-					<form onSubmit={handleSubmit}>
-						<Typography variant='h4'>Submit a help request</Typography>
-
-						<TextField
-							name='message'
-							variant='outlined'
-							label='Message'
-							fullWidth
-							multiline rows={2}
-							value={postData.message}
-							onChange={(e) =>
-								setPostData({ ...postData, message: e.target.value })
-							}
-						/>
-						<Grid container>
-							<Grid item xs={10}>
-								<Button
-									type='submit'
-									variant='text'
-									size='large'
-									fullWidth
-									color='primary'
-								>
-									Submit
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									onClick={clear}
-									variant='contained'
-									size='large'
-									fullWidth
-									color="secondary"
-								>
-									Clear
-								</Button>
-							</Grid>
-						</Grid>
-					</form>
-				</Paper>
+				<Form/>				
 			</Container>
 			<Container 
 				className={classes.container} 
 				maxWidth='lg'
 			>
-			{allData.map((el, index) => (
-					<Box 
-						border= {1}
-						borderColor = "lightgrey"
-						key={index}
-					>
-						<Typography 
-							variant='h6' 
-							className={classes.paper}
-						>
-							{el.message}
-						</Typography>
-					</Box>
-				))
-			}
-			
+				<Tickets/>			
 			</Container>
 		</>
 	);

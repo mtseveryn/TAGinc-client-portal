@@ -60,7 +60,7 @@ const Header = () => {
       }
       </Toolbar>
       <Dialog open={openAuth} onBackdropClick={toggleAuth}>
-        <Auth />
+        <Auth toggleAuth={toggleAuth} />
       </Dialog>
     </AppBar>
   )
