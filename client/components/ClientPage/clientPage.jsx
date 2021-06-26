@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Typography, Container } from '@material-ui/core';
 import Form from '../Form/Form';
 import Tickets from '../Tickets/Tickets';
@@ -16,7 +15,7 @@ const ClientPage = () => {
 			</Container>
 			<Container 
 				className={classes.container} 
-				maxWidth='lg'
+				maxWidth='xl'
 			>
 				<Tickets/>			
 			</Container>

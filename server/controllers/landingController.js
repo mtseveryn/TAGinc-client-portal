@@ -6,7 +6,8 @@ landingController.getData = async (req, res, next) => {
     // const myQuery = "SELECT NOW()";
     // const data = await db.query(myQuery);
     const data = [{
-        message: 'This is a message from landingController\'s getData'
+        message: 'This is a message from landingController\'s getData',
+        resolved: false,
     }];
     req.body = data;
     console.log('completed query');

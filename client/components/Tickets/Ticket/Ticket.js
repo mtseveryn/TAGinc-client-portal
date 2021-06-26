@@ -1,22 +1,44 @@
-import React from 'react'
-import { Box, Typography } from '@material-ui/core'
+import React, {useEffect} from 'react'
+import { Box, Typography, Button } from '@material-ui/core'
 
 import useStyles from './styles';
 
 
-const Ticket = ({message, index}) => {
+const Ticket = ({ index, state, changeState}) => {
+
+  const toggleResolved = ()=>{
+    changeState(prev=>{
+      prev[index].resolved = !prev[index].resolved 
+      return prev;
+    })
+    console.log(state);
+  }
+
+  useEffect(() => {
+        console.log('hit')
+  }, [state.resolved])
+
   const classes = useStyles();
   return (
     <Box 
       border= {1}
       borderColor = "lightgrey"
+      
     >
       <Typography 
         variant='h6' 
-        className={classes.paper}
+        className={classes.paper}        
       >
-        {message}
+        {state.message}
       </Typography>
+      {
+
+      }
+      <Button
+        onClick={toggleResolved}
+      >
+        {state.resolved ? 'Reopen' : 'Resolve'}
+      </Button>
     </Box>
   )
 }

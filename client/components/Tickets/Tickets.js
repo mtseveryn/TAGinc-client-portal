@@ -45,7 +45,7 @@ const Tickets = () => {
     <>
       <Typography variant='h3'>Messages</Typography>
       {
-        allData.map((el, index) => <Ticket key={index} message={el.message} />)
+        allData.map((el, index) => <Ticket key={index} state={el} changeState={setAllData} index={index} />)
       }
     </>
   )
