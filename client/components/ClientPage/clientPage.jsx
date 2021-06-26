@@ -1,36 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {
-	TextField,
-	Button,
-	Typography,
-	Paper,
-	Container,
-	Grid,
-	Box,
-} from '@material-ui/core';
+import { Typography, Container } from '@material-ui/core';
+import Form from '../Form/Form';
+import Tickets from '../Tickets/Tickets';
 import useStyles from './styles';
 
 const POST_PATH = 'tickets/message';
 const GET_PATH = 'tickets/data';
 
 const ClientPage = () => {
-	// todo: declare states
-	const postInitialState = {
-		message: '',
-	};
-	
-	const dataInitialState = [
-		{
-			msgId: 1,
-			message:'Message 1',
-		}, 
-		{message:'Message 2'}, 
-		{message:'Message 3'}
-	];
-
-	const [allData, setAllData] = useState(dataInitialState);
-	const [postData, setPostData] = useState(postInitialState);
 	const classes = useStyles();
 
 	//todo: helper function to retrieve all data from backend
@@ -76,47 +54,7 @@ const ClientPage = () => {
 	return (
 		<>
 			<Container className={classes.container} maxWidth='xl'>
-				<Paper className={classes.paper}>
-					<form onSubmit={handleSubmit}>
-						<Typography variant='h4'>Submit a help request</Typography>
-
-						<TextField
-							name='message'
-							variant='outlined'
-							label='Message'
-							fullWidth
-							multiline rows={2}
-							value={postData.message}
-							onChange={(e) =>
-								setPostData({ ...postData, message: e.target.value })
-							}
-						/>
-						<Grid container>
-							<Grid item xs={10}>
-								<Button
-									type='submit'
-									variant='text'
-									size='large'
-									fullWidth
-									color='primary'
-								>
-									Submit
-								</Button>
-							</Grid>
-							<Grid item xs={2}>
-								<Button
-									onClick={clear}
-									variant='contained'
-									size='large'
-									fullWidth
-									color="secondary"
-								>
-									Clear
-								</Button>
-							</Grid>
-						</Grid>
-					</form>
-				</Paper>
+				<Form/>				
 			</Container>
 			<Container 
 				className={classes.container} 
