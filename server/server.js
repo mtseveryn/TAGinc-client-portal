@@ -4,6 +4,8 @@ const app = express();
 const apiRouter = require('./routes/api.js')
 const cors = require('cors');
 //import routes api
+const ticketsRouter = require('./routes/tickets');
+// const userRouter = require('./routes/tickets');
 
 const PORT = 3000;
 
@@ -21,8 +23,8 @@ app.get('/', (req, res) => {
 
 
 //define route handlers
-app.use('/api', apiRouter);
-
+app.use('/tickets', ticketsRouter);
+// app.use('/user', userRouter);
 
 // To add Handle- Path to 404
 app.use('*',(req, res) =>{
