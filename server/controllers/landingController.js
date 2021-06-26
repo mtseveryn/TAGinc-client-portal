@@ -5,7 +5,7 @@ const landingController = {};
 landingController.getAllTicketsEnd = async (req, res) => {
     const getAllTicketsQuery = 'SELECT * FROM "public"."request"';
     const { rows } = await db.query(getAllTicketsQuery); //rows array of objs
-    res.status(200).json(rows);
+    res.status(200).json(rows.reverse());
 }
 
 landingController.postTicketEnd = async (req, res) => {
@@ -17,15 +17,17 @@ landingController.postTicketEnd = async (req, res) => {
     const ticketInfo = {
         status: 'Unassigned',
         title: 'New issue',
-        msg: 'Please help'
+        msg: 'Please help',
+        uid: 4
     }
-    const postTicketQuery = `INSERT INTO request (Title, Description, Status) VALUES ('${ticketInfo.title}', '${req.body}', '${ticketInfo.status}');`;
-    db.query(postTicketQuery);
-    res.status(200).send();
+    console.log('req.body in post fxn: ', req.body);
+    const postTicketQuery = `INSERT INTO request (Title, Description, Status, Uid) VALUES ('${ticketInfo.title}', '${req.body.message}', '${ticketInfo.status}', '${ticketInfo.uid}');`;
+    await db.query(postTicketQuery);
+    res.status(200);
 }
 /*
 landingController.getAllUsersInfoEnd = async (req, res) => {
-    const getAllUsersQuery = 'SELECT * FROM "public"."user"';
+    const getAllUsersQuery = 'SELECT * FROM "public"."puser"';
     const { rows } = await db.query(getAllUsersQuery); //rows array of objs
     res.status(200).json(rows);
 }
@@ -38,7 +40,7 @@ landingController.postNewUserEnd = async (req, res) => {
         type: 'User',
         pword: 'ilovecookies!'
     }
-    const postNewUserQuery = `INSERT INTO user (First, Last, Email, Type, Password) VALUES ('${userInfo.fname}, '${userInfo.lname}', '${userInfo.email}', '${userInfo.type}', '${userInfo.pword}')`;
+    const postNewUserQuery = `INSERT INTO puser (First, Last, Email, Type, Password) VALUES ('${userInfo.fname}, '${userInfo.lname}', '${userInfo.email}', '${userInfo.type}', '${userInfo.pword}')`;
     db.query(postNewUserQuery);
     res.status(200).send();
 }

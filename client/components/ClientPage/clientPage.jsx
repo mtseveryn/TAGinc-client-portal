@@ -11,8 +11,8 @@ import {
 } from '@material-ui/core';
 import useStyles from './styles';
 
-const POST_PATH = '';
-const GET_PATH = '/api/data';
+const POST_PATH = 'tickets/message';
+const GET_PATH = 'tickets/data';
 
 const ClientPage = () => {
 	// todo: declare states
@@ -38,19 +38,19 @@ const ClientPage = () => {
 		
 		try {
 			// ! check backend routes and then update route here
-			const response = await axios.get(`http://localhost:3000/${GET_PATH}`);
-			// setAllData(response);
-			console.log('response: ', response);
+			const { data } = await axios.get(`http://localhost:3000/${GET_PATH}`);
+			console.log('data: ', data);
+			setAllData(data);
+			//console.log('response: ', response);
 		} catch (error) {
 			console.error('err in getData', error);
 		}
 	}; //end of getData
 
 	// todo: helper function to save data to backend
-	const saveData = () => {
-		return;
+	const saveData = async () => {
 		try {
-			axios.post(`http://localhost:3000/${POST_PATH}`, postData);
+			await axios.post(`http://localhost:3000/${POST_PATH}`, postData);
 		} catch (error) {
 			console.log('saveData() from clientPage error: ', error);
 		}
@@ -132,7 +132,7 @@ const ClientPage = () => {
 							variant='h6' 
 							className={classes.paper}
 						>
-							{el.message}
+							{el.description}
 						</Typography>
 					</Box>
 				))
