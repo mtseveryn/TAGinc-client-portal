@@ -5,7 +5,7 @@ import Ticket from './Ticket/Ticket';
 import axios from 'axios';
 
 
-const GET_PATH = 'api/data';
+const GET_PATH = 'tickets/data';
 
 const Tickets = () => {
   const dataInitialState = [

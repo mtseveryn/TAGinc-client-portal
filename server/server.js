@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const apiRouter = require('./routes/api.js')
+// const apiRouter = require('./routes/api.js')
 const cors = require('cors');
 //import routes api
 const ticketsRouter = require('./routes/tickets');

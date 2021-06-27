@@ -29,7 +29,7 @@ const Ticket = ({ index, state, changeState}) => {
         variant='h6' 
         className={classes.paper}        
       >
-        {state.message}
+        {state.description}
       </Typography>
       {
 

@@ -3,7 +3,7 @@ import { Typography, Paper, Grid, Button, TextField } from '@material-ui/core';
 import useStyles from './styles';
 import axios from 'axios';
 
-const POST_PATH = 'api/message';
+const POST_PATH = 'tickets/message';
 
 const Form = () => {
   const postInitialState = {
