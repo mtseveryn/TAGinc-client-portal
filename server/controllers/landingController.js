@@ -2,23 +2,10 @@ const db = require('../model/sessionModel');
 
 const landingController = {};
 
-<<<<<<< HEAD
-landingController.getData = async (req, res, next) => {
-    // const myQuery = "SELECT NOW()";
-    // const data = await db.query(myQuery);
-    const data = [{
-        message: 'This is a message from landingController\'s getData',
-        resolved: false,
-    }];
-    req.body = data;
-    console.log('completed query');
-    return next();
-=======
 landingController.getAllTicketsEnd = async (req, res) => {
     const getAllTicketsQuery = 'SELECT * FROM "public"."request"';
     const { rows } = await db.query(getAllTicketsQuery); //rows array of objs
     res.status(200).json(rows.reverse());
->>>>>>> 06b34b0c00f70addb472d9daae06219403917c53
 }
 
 landingController.postTicketEnd = async (req, res) => {
