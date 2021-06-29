@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Typography } from "@material-ui/core";
-import useStyles from "./styles";
-import Ticket from "./Ticket/Ticket";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Typography } from '@material-ui/core';
+import useStyles from './styles';
+import Ticket from './Ticket/Ticket';
+import axios from 'axios';
 
-const GET_PATH = "tickets/data";
+const GET_PATH = 'tickets/data';
 
 const Tickets = () => {
   const dataInitialState = [
     {
       msgId: 1,
-      message: "Message 1",
+      message: 'Message 1',
     },
-    { message: "Message 2" },
-    { message: "Message 3" },
+    { message: 'Message 2' },
+    { message: 'Message 3' },
   ];
 
   const [allData, setAllData] = useState(dataInitialState);
@@ -28,9 +28,9 @@ const Tickets = () => {
       const { data } = await axios.get(`http://localhost:3000/${GET_PATH}`);
 
       setAllData([...data]);
-      // console.log('response: ', data);
+      console.log('response: ', data);
     } catch (error) {
-      console.error("err in getData", error);
+      console.error('err in getData', error);
     }
   }; //end of getData
 
