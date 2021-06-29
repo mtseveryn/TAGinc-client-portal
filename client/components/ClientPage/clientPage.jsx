@@ -8,23 +8,20 @@ const POST_PATH = 'tickets/message';
 const GET_PATH = 'tickets/data';
 
 const ClientPage = () => {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	const change = false;
+  const change = false;
 
-	return (
-		<>
-			<Container className={classes.container} maxWidth='xl'>
-				<Form/>				
-			</Container>
-			<Container 
-				className={classes.container} 
-				maxWidth='xl'
-			>
-				<Tickets/>			
-			</Container>
-		</>
-	);
+  return (
+    <>
+      <Container className={classes.container} maxWidth="xl">
+        <Form />
+      </Container>
+      <Container className={classes.container} maxWidth="xl">
+        <Tickets />
+      </Container>
+    </>
+  );
 };
 
 export default ClientPage;

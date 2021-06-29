@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
   Typography,
@@ -7,9 +7,10 @@ import {
   Button,
   Avatar,
   Dialog,
-} from "@material-ui/core";
-import Auth from "../Auth/Auth";
-import useStyles from "./styles";
+  Grid,
+} from '@material-ui/core';
+import Auth from '../Auth/Auth';
+import useStyles from './styles';
 
 const Header = () => {
   const [openAuth, setOpenAuth] = useState(false);
@@ -30,28 +31,39 @@ const Header = () => {
           // to="/"
           className={classes.heading}
           variant="h4"
-          align="center"
         >
           TAGinc Client-Portal
         </Typography>
         {/* <img src={logo} alt="logo" height="60" /> */}
       </div>
 
-      {user ? (
-        <Toolbar className={classes.toolbar}>
-          <Typography variant="h6">&lt; User Name</Typography>
-          <Typography variant="h6"> &lt; Company Name </Typography>
-          <Button variant="contained" color="secondary" onClick={logout}>
-            Logout
-          </Button>
-        </Toolbar>
-      ) : (
-        <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar}>
+        {user ? (
+          <div className={classes.profile}>
+            <Typography className={classes.username} variant="h6">
+              User Name
+            </Typography>
+            <Typography className={classes.userCompany} variant="h6">
+              &lt; Company Name
+            </Typography>
+            <Button variant="contained" color="secondary" onClick={logout}>
+              Logout
+            </Button>
+          </div>
+        ) : (
           <Button variant="contained" color="primary" onClick={toggleAuth}>
             signIn
           </Button>
-        </Toolbar>
-      )}
+        )}
+      </Toolbar>
+
+      {/* <Grid container>
+        <Grid item xs={12} md={6}>
+        </Grid>
+        <Grid item xs={12} md={6} >
+        </Grid>
+      </Grid> */}
+
       <Dialog open={openAuth} onBackdropClick={toggleAuth}>
         <Auth toggleAuth={toggleAuth} />
       </Dialog>

@@ -1,14 +1,29 @@
-import React, { useState } from "react";
-import { Typography, Paper, Grid, Button, TextField } from "@material-ui/core";
-import useStyles from "./styles";
-import axios from "axios";
-import TicketTypes from "../TicketTypes/TicketTypes";
+import React, { useState } from 'react';
+import {
+  Typography,
+  Paper,
+  Grid,
+  Button,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Box,
+} from '@material-ui/core';
 
-const POST_PATH = "tickets/message";
+import useStyles from './styles';
+import axios from 'axios';
+import TicketTypes from '../TicketTypes/TicketTypes';
+
+const POST_PATH = 'tickets/message';
 
 const Form = () => {
   const postInitialState = {
-    message: "",
+    message: '',
   };
 
   const [postData, setPostData] = useState(postInitialState);
@@ -18,15 +33,15 @@ const Form = () => {
     try {
       await axios.post(`http://localhost:3000/${POST_PATH}`, postData);
     } catch (error) {
-      console.log("saveData() from clientPage error: ", error);
+      console.log('saveData() from clientPage error: ', error);
     }
   };
 
   // handleSubmit
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (postData.message === "") {
-      console.log("Nothing submitted");
+    if (postData.message === '') {
+      console.log('Nothing submitted');
       return;
     }
     saveData();
@@ -37,11 +52,112 @@ const Form = () => {
     setPostData(postInitialState);
   };
 
+  const [item, itemAge] = useState('');
+  const [value, valueAge] = useState('');
+
+  const handleChange = (event) => {
+    itemAge(event.target.value);
+  };
+
+  const handleRadioChange = (event) => {
+    valueAge(event.target.value);
+  };
+
+  const getDate = () => {
+    const date = new Date();
+    const dateStr = `${date.getFullYear()}-${
+      date.getMonth() > 9 ? date.getMonth() : '0' + date.getMonth()
+    }-${date.getDate()}`;
+    return dateStr;
+  };
+
   return (
     <Paper className={classes.paper}>
       <form onSubmit={handleSubmit}>
         <Typography variant="h4">Create a new Ticket</Typography>
         <TicketTypes />
+
+        <Typography>Make Appointment and time window:</Typography>
+        <TextField
+          id="date"
+          label="Date"
+          type="date"
+          defaultValue={getDate()}
+          className={classes.dateField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+
+        <TextField
+          id="time"
+          label="From"
+          type="time"
+          defaultValue="07:30"
+          className={classes.timeField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 900, // 5 min
+          }}
+        />
+        <TextField
+          id="time"
+          label="To"
+          type="time"
+          defaultValue="07:30"
+          className={classes.timeField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            step: 900, // 5 min
+          }}
+        />
+
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-simple-select-label">
+                Select Hardware
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={item}
+                onChange={handleChange}
+              >
+                <MenuItem value={10}>Hard Drive</MenuItem>
+                <MenuItem value={20}>RAM</MenuItem>
+                <MenuItem value={30}>Monitor</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <FormControl className={classes.formControl} fullWidth>
+              <RadioGroup
+                row={true}
+                aria-label="gender"
+                name="gender1"
+                value={value}
+                onChange={handleRadioChange}
+              >
+                <FormControlLabel
+                  value="female"
+                  control={<Radio />}
+                  label="Replace"
+                />
+                <FormControlLabel
+                  value="male"
+                  control={<Radio />}
+                  label="Install"
+                />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+        </Grid>
+
         <TextField
           className={classes.textField}
           name="message"
@@ -55,6 +171,7 @@ const Form = () => {
             setPostData({ ...postData, message: e.target.value })
           }
         />
+
         <Grid container>
           <Grid item xs={10}>
             <Button
