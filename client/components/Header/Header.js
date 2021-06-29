@@ -30,7 +30,7 @@ const Header = () => {
           // component={Link}
           // to="/"
           className={classes.heading}
-          variant="h4"
+          variant="h6"
         >
           TAGinc Client-Portal
         </Typography>
@@ -40,10 +40,8 @@ const Header = () => {
       <Toolbar className={classes.toolbar}>
         {user ? (
           <div className={classes.profile}>
-            <Typography className={classes.username} variant="h6">
-              User Name
-            </Typography>
-            <Typography className={classes.userCompany} variant="h6">
+            <Typography className={classes.username}>User Name</Typography>
+            <Typography className={classes.userCompany}>
               &lt; Company Name
             </Typography>
             <Button variant="contained" color="secondary" onClick={logout}>

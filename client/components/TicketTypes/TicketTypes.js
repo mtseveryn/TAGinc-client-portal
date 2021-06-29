@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,7 +36,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `nav-tab-${index}`,
-    "aria-controls": `nav-tabpanel-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
   };
 }
 
@@ -76,23 +76,23 @@ export default function NavTabs() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Hardware" {...a11yProps(0)} />
-          <LinkTab label="Software" {...a11yProps(1)} />
+          <LinkTab label="Cloud Services" {...a11yProps(0)} />
+          <LinkTab label="Cybersecurity" {...a11yProps(1)} />
           <LinkTab label="Networking" {...a11yProps(2)} />
-          <LinkTab label="Tech Support" {...a11yProps(3)} />
+          <LinkTab label="Backup & Recovery" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Hardware
+        {/* New Service : Existing service services: Office 365, Azure, Virtual Server/Desktop */}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Software
+        {/*Cybersecurity: Network Security/Monitoring, Ransomware protection/prevention Endpoint Security, Email Security, Web/Content Security  */}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Networking
+        {/* Networking: Connect your users, devices and systems across boundaries - System Engineering/Administration, Switching, Routing, Firewall, IDS/IPS, LAN/WLAN/WiFi/WAN  */}
       </TabPanel>
       <TabPanel value={value} index={3}>
-        Tech Support
+        {/* Backup & Recovery: Ransomeware recovery, Endpoint backup (server/desktop/laptop) */}
       </TabPanel>
     </div>
   );

@@ -13,7 +13,11 @@ import {
   FormControlLabel,
   Radio,
   Box,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import useStyles from './styles';
 import axios from 'axios';
@@ -22,6 +26,22 @@ import TicketTypes from '../TicketTypes/TicketTypes';
 const POST_PATH = 'tickets/message';
 
 const Form = () => {
+  const formInitialState = {
+    ticketId: '',
+    ticketName: '',
+    ticketCompany: '',
+    type: '',
+    new: true,
+    allServices: [],
+    userServices: [],
+    selectedService: '',
+    serviceActions: [],
+    selectedAction: '',
+    date: '',
+    timeStart: '',
+    timeEnd: '',
+  };
+
   const postInitialState = {
     message: '',
   };
@@ -72,9 +92,16 @@ const Form = () => {
   };
 
   return (
-    <Paper className={classes.paper}>
-      <form onSubmit={handleSubmit}>
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
         <Typography variant="h4">Create a new Ticket</Typography>
+      </AccordionSummary>
+
+      <form onSubmit={handleSubmit}>
         <TicketTypes />
 
         <Typography>Make Appointment and time window:</Typography>
@@ -197,7 +224,7 @@ const Form = () => {
           </Grid>
         </Grid>
       </form>
-    </Paper>
+    </Accordion>
   );
 };
 
