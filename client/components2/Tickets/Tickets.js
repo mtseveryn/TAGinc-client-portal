@@ -24,8 +24,9 @@ const Tickets = () => {
 
   const getData = async () => {
     try {
+      const API = axios.create({ baseURL: 'http://localhost:3000' });
       // ! check backend routes and then update route here
-      const { data } = await axios.get(`http://localhost:3000/${GET_PATH}`);
+      const { data } = await API.get(`/${GET_PATH}`);
 
       setAllData([...data]);
       console.log('response: ', data);
