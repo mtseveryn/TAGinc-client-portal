@@ -5,7 +5,7 @@ const app = express();
 const cors = require('cors');
 //import routes api
 const ticketsRouter = require('./routes/tickets');
-// const userRouter = require('./routes/tickets');
+const userRouter = require('./routes/user');
 
 const PORT = 3000;
 
@@ -15,20 +15,19 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static(path.resolve(__dirname, '../build/')))
+app.use(express.static(path.resolve(__dirname, '../build/')));
 
 app.get('/', (req, res) => {
 	return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
 
-
 //define route handlers
 app.use('/tickets', ticketsRouter);
-// app.use('/user', userRouter);
+app.use('/user', userRouter);
 
 // To add Handle- Path to 404
-app.use('*',(req, res) =>{
-	return res.status(404).send("This is not the page you're looking for..")
+app.use('*', (req, res) => {
+	return res.status(404).send("This is not the page you're looking for..");
 });
 
 // To add Global error handler- Catch all errors
