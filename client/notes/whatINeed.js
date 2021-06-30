@@ -43,9 +43,9 @@ const user = {
 
 const admin = {
   _id: '',
-  companys: [
+  companies: [
     // -> all in the database
-    [company._id, company.name],
+    { id: company._id, name: company.name },
   ],
   services: [
     // -> all in the database
@@ -62,7 +62,7 @@ const admin = {
       ticketType,
       companyId,
       userId,
-      isPending: 'Boolean',
+      ticketStatus: '', // -> open, closed, pending
       ticketDetails: {
         // list of key values pairs based on the ticketType
       },

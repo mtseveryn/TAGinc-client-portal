@@ -4,14 +4,13 @@ import { userReducer } from '../reducers/userReducer';
 
 export const UserContext = createContext();
 
-const GET_PATH = 'tickets/data';
-
 const UserContextProvider = (props) => {
   const [user, dispatch] = useReducer(userReducer, []);
 
   const getState = async () => {
     try {
       // ! check backend routes and then update route here
+      const GET_PATH = 'tickets/data';
 
       const { data } = await axios.get(`http://localhost:3000/${GET_PATH}`);
       console.log('data: ', data);
