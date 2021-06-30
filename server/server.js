@@ -17,13 +17,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../build/')));
 
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-});
-
 //define route handlers
 app.use('/tickets', ticketsRouter);
 // app.use('/user', userRouter);
+
+app.get('/', (req, res) => {
+  return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+});
 
 // To add Handle- Path to 404
 app.use('*', (req, res) => {

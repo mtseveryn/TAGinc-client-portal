@@ -21,8 +21,8 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <UserContextProvider>
-          <Route path="/admin_company_view" component={Company} />
-          <Route path="/admin">
+          <Route path="/admin/company_view" component={Company} />
+          <Route path="/admin" exact>
             <UserContextProvider>
               <Admin />
             </UserContextProvider>

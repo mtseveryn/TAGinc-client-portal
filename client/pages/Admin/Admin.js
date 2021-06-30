@@ -9,11 +9,11 @@ const Admin = () => {
 
   return Array.isArray(user) ? (
     <div>
-      Admin Page
+      Admin 3
       {user.map((user) => (
         <Box key={user.rid}>{user.description}</Box>
       ))}
-      <button onClick={() => history.push('/admin_company_view')}>
+      <button onClick={() => history.push('/admin/company_view')}>
         company
       </button>
     </div>
