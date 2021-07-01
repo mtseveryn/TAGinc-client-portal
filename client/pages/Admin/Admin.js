@@ -24,8 +24,11 @@ import useStyles from './styles';
 
 const Admin = () => {
   const history = useHistory();
-  const { user, dispatch } = useContext(UserContext);
   const { path, url } = useRouteMatch();
+
+  console.log('path:', path, ' url: ', url);
+
+  const { user, dispatch } = useContext(UserContext);
 
   const tickets = [
     {
@@ -84,20 +87,19 @@ const Admin = () => {
           {user.map((user) => (
             <Box key={user.rid}>{user.description}</Box>
           ))}
-          <Button
-            onClick={() => history.push(`${url}_company`)}
-            variant="outlined"
-          >
-            Company
-          </Button>
-          <Link to={`${url}/company`}>Company</Link>
-          <Switch>
-            <Route path={`${path}/company`} component={Company} />
-          </Switch>
         </div>
       ) : (
         <div>waiting</div>
       )}
+
+      <Button onClick={() => history.push(`${url}/company`)} variant="outlined">
+        Company
+      </Button>
+      <Link to={`${url}/company`}>Company</Link>
+
+      <Route path={`${path}/company`}>
+        <Company />
+      </Route>
     </>
   );
 };

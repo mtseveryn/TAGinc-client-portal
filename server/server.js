@@ -21,8 +21,10 @@ app.use(express.static(path.resolve(__dirname, '../build/')));
 app.use('/tickets', ticketsRouter);
 // app.use('/user', userRouter);
 
-app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+app.get('/*', (req, res) => {
+  return res
+    .status(200)
+    .sendFile(path.resolve(__dirname, '../build/index.html'));
 });
 
 // To add Handle- Path to 404

@@ -9,11 +9,11 @@ module.exports = {
     publicPath: '/',
     historyApiFallback: true,
     port: 8080,
-    // proxy: {
-    //   '/': {
-    //     target: 'http://localhost:3000/',
-    //   },
-    // },
+    proxy: {
+      '/': {
+        target: 'http://localhost:3000/',
+      },
+    },
     hot: true,
     inline: true,
     open: true,
@@ -21,6 +21,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: './client/index.js',
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
   }, //end of output

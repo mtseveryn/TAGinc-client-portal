@@ -24,7 +24,7 @@ const App = () => {
         <UserContextProvider>
           <Route path="/admin" exact component={Admin} />
           <Route path="/admin2" exact component={ClientPage} />
-          <Route path="/admin_company" component={Company} />
+          {/* <Route path="/admin/company" exact component={Company} /> */}
           {/* <Route path="/admin">
             <Switch>
               <Route path="/" component={Admin} />
