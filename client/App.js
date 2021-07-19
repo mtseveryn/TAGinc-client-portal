@@ -22,7 +22,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Home} />
         <UserContextProvider>
-          <Route path="/admin" exact component={Admin} />
+          <Route path="/admin" component={Admin} />
           <Route path="/admin2" exact component={ClientPage} />
           {/* <Route path="/admin/company" exact component={Company} /> */}
           {/* <Route path="/admin">

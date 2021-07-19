@@ -8,7 +8,7 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
-import Company from './Company/Company';
+import Company from './Company/Company.js';
 import ComboBox from '../../components/ComboBox/ComboBox';
 import {
   Container,
@@ -24,7 +24,10 @@ import useStyles from './styles';
 
 const Admin = () => {
   const history = useHistory();
-  const { path, url } = useRouteMatch();
+  const matchObj = useRouteMatch();
+  const { path, url } = matchObj;
+
+  console.log('matchObj -> ', matchObj);
 
   console.log('path:', path, ' url: ', url);
 
@@ -97,7 +100,8 @@ const Admin = () => {
       </Button>
       <Link to={`${url}/company`}>Company</Link>
 
-      <Route path={`${path}/company`}>
+      <Route path={`${url}/:company`}>
+        {console.log(`inside ${path}/company`)}
         <Company />
       </Route>
     </>
